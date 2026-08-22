@@ -1,0 +1,21 @@
+# Environment variables (keep your API keys secret!)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Generated charts/output
+charts/
+
+# Dataset (optional - remove this line if you want to include it)
+dataset.csv
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
