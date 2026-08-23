@@ -506,7 +506,6 @@ with st.sidebar:
     user_key_input = None
 
     if not env_key or env_key.startswith("gsk_your"):
-        st.warning("`GROQ_API_KEY` not found in `.env` or Streamlit Secrets")
         user_key_input = st.sidebar.text_input(
             "Enter Groq API Key",
             type="password",
@@ -518,7 +517,7 @@ with st.sidebar:
     if groq_client:
         st.success("Groq API Connected", icon="✅")
     else:
-        st.info("Groq API Key Required", icon="🔑")
+        st.info("Groq API Key not set. Enter key above or add to Streamlit Secrets.", icon="🔑")
 
     st.divider()
     st.subheader("Data Loading & Upload")
