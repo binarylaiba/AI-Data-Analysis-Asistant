@@ -237,16 +237,11 @@ html, body, [class*="css"] {
 # ---------------------------------------------------------------------------
 # Security & API Protection
 # ---------------------------------------------------------------------------
-def fetch_api_key(user_key_input=None):
+def fetch_api_key():
     """
-    Safely retrieve Groq API key from:
-    1. Sidebar user input
-    2. Streamlit Cloud Secrets (st.secrets)
-    3. Environment variables (os.getenv)
+    Safely retrieve Groq API key from Streamlit Cloud Secrets (st.secrets)
+    or environment variables (.env).
     """
-    if user_key_input and user_key_input.strip() and not user_key_input.strip().startswith("gsk_your"):
-        return user_key_input.strip()
-
     try:
         if hasattr(st, "secrets"):
             for k in ["GROQ_API_KEY", "groq_api_key", "GROQ_KEY"]:
@@ -265,8 +260,8 @@ def fetch_api_key(user_key_input=None):
     return ""
 
 
-def get_groq_client(user_key_input=None):
-    key = fetch_api_key(user_key_input=user_key_input)
+def get_groq_client():
+    key = fetch_api_key()
     if not key:
         return None
     try:
@@ -502,23 +497,12 @@ with st.sidebar:
     )
     st.divider()
 
-    # Security check: load key from st.secrets, environment, or sidebar
-    active_key = fetch_api_key()
-    user_key_input = None
-
-    if not active_key:
-        user_key_input = st.sidebar.text_input(
-            "Enter Groq API Key",
-            type="password",
-            help="Password-masked fallback key input (never stored or logged).",
-        )
-
-    groq_client = get_groq_client(user_key_input=user_key_input)
+    groq_client = get_groq_client()
 
     if groq_client:
-        st.success("Groq API Connected", icon="✅")
+        st.success("Groq AI Connected", icon="✅")
     else:
-        st.info("Groq API Key not set. Enter key above or add to Streamlit Secrets.", icon="🔑")
+        st.warning("Groq API key missing in .env or Streamlit Secrets", icon="⚠️")
 
     st.divider()
     st.subheader("Data Loading & Upload")
