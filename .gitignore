@@ -1,21 +1,12 @@
-# Environment variables (keep your API keys secret!)
+# Security & Version Control Exclusion
 .env
-
-# Python cache
+charts/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Generated charts/output
-charts/
-
-# Dataset (optional - remove this line if you want to include it)
-dataset.csv
-
-# VS Code
+# IDE & OS
 .vscode/
-
-# OS files
 .DS_Store
 Thumbs.db

@@ -1,0 +1,51 @@
+Order_ID,Product,Category,Sales,Age,City
+1001,Laptop,Electronics,1200.50,29,New York
+1002,Headphones,Electronics,150.00,34,Los Angeles
+1003,Desk Chair,Furniture,220.00,45,Chicago
+1004,Coffee Maker,Home & Kitchen,85.50,28,Houston
+1005,Running Shoes,Clothing,110.00,22,Phoenix
+1006,Smartphone,Electronics,899.99,31,Philadelphia
+1007,T-Shirt,Clothing,25.00,19,San Antonio
+1008,Blender,Home & Kitchen,65.00,52,San Diego
+1009,Bookshelf,Furniture,175.00,41,Dallas
+1010,Gaming Mouse,Electronics,45.00,24,San Jose
+1011,Monitor,Electronics,299.99,38,Austin
+1012,Winter Jacket,Clothing,180.00,47,Seattle
+1013,Air Fryer,Home & Kitchen,120.00,36,Denver
+1014,Dining Table,Furniture,450.00,55,Boston
+1015,Keyboard,Electronics,75.00,27,Nashville
+1016,Yoga Mat,Clothing,35.00,23,San Francisco
+1017,Toaster,Home & Kitchen,40.00,60,Columbus
+1018,Office Desk,Furniture,320.00,43,Charlotte
+1019,Smartwatch,Electronics,249.99,30,Indianapolis
+1020,Jeans,Clothing,60.00,26,Seattle
+1021,Microwave,Home & Kitchen,140.00,49,Phoenix
+1022,Sofa,Furniture,780.00,51,Chicago
+1023,Tablet,Electronics,499.00,33,New York
+1024,Sneakers,Clothing,95.00,21,Houston
+1025,Vacuum Cleaner,Home & Kitchen,210.00,42,Dallas
+1026,Recliner,Furniture,340.00,58,Los Angeles
+1027,Bluetooth Speaker,Electronics,89.00,25,San Diego
+1028,Hoodie,Clothing,55.00,20,Austin
+1029,Electric Kettle,Home & Kitchen,45.00,37,Philadelphia
+1030,Coffee Table,Furniture,160.00,46,San Jose
+1031,Webcam,Electronics,69.99,29,Boston
+1032,Dress,Clothing,85.00,32,San Antonio
+1033,Stand Mixer,Home & Kitchen,280.00,48,Denver
+1034,Bed Frame,Furniture,520.00,39,San Francisco
+1035,External SSD,Electronics,130.00,35,Columbus
+1036,Sweater,Clothing,50.00,28,Charlotte
+1037,Food Processor,Home & Kitchen,95.00,53,Indianapolis
+1038,Nightstand,Furniture,90.00,31,Nashville
+1039,Earbuds,Electronics,119.99,22,New York
+1040,Shorts,Clothing,30.00,24,Los Angeles
+1041,Juicer,Home & Kitchen,70.00,40,Chicago
+1042,Dresser,Furniture,380.00,62,Houston
+1043,Camera,Electronics,750.00,34,Phoenix
+1044,Track Pants,Clothing,45.00,27,Philadelphia
+1045,Slow Cooker,Home & Kitchen,60.00,50,San Antonio
+1046,Bookshelf,Furniture,190.00,44,San Diego
+1047,Gaming Console,Electronics,499.99,23,Dallas
+1048,Polo Shirt,Clothing,40.00,38,San Jose
+1049,Dishwasher,Home & Kitchen,650.00,56,Austin
+1050,Wardrobe,Furniture,600.00,49,Seattle
