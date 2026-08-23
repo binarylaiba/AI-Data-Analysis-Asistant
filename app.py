@@ -237,28 +237,38 @@ html, body, [class*="css"] {
 # ---------------------------------------------------------------------------
 # Security & API Protection
 # ---------------------------------------------------------------------------
-def get_groq_client(user_key_input=None):
+def fetch_api_key(user_key_input=None):
     """
-    Retrieve Groq API key from Streamlit Cloud Secrets (st.secrets) or .env via os.getenv.
-    Fallback to password-masked sidebar input if key is absent.
-    NEVER hardcode keys or expose them in the UI.
+    Safely retrieve Groq API key from:
+    1. Sidebar user input
+    2. Streamlit Cloud Secrets (st.secrets)
+    3. Environment variables (os.getenv)
     """
-    key = ""
+    if user_key_input and user_key_input.strip() and not user_key_input.strip().startswith("gsk_your"):
+        return user_key_input.strip()
+
     try:
-        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
-            key = str(st.secrets["GROQ_API_KEY"]).strip()
+        if hasattr(st, "secrets"):
+            for k in ["GROQ_API_KEY", "groq_api_key", "GROQ_KEY"]:
+                if k in st.secrets:
+                    val = str(st.secrets[k]).strip()
+                    if val and not val.startswith("gsk_your"):
+                        return val
     except Exception:
-        key = ""
+        pass
 
+    for var in ["GROQ_API_KEY", "groq_api_key"]:
+        val = os.getenv(var, "").strip()
+        if val and not val.startswith("gsk_your"):
+            return val
+
+    return ""
+
+
+def get_groq_client(user_key_input=None):
+    key = fetch_api_key(user_key_input=user_key_input)
     if not key:
-        key = os.getenv("GROQ_API_KEY", "").strip()
-
-    if not key and user_key_input:
-        key = user_key_input.strip()
-
-    if not key or key.startswith("gsk_your"):
         return None
-
     try:
         return Groq(api_key=key)
     except Exception:
@@ -492,20 +502,11 @@ with st.sidebar:
     )
     st.divider()
 
-    # Security check: load key from st.secrets or environment
-    env_key = ""
-    try:
-        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
-            env_key = str(st.secrets["GROQ_API_KEY"]).strip()
-    except Exception:
-        env_key = ""
-
-    if not env_key:
-        env_key = os.getenv("GROQ_API_KEY", "").strip()
-
+    # Security check: load key from st.secrets, environment, or sidebar
+    active_key = fetch_api_key()
     user_key_input = None
 
-    if not env_key or env_key.startswith("gsk_your"):
+    if not active_key:
         user_key_input = st.sidebar.text_input(
             "Enter Groq API Key",
             type="password",
