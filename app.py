@@ -492,12 +492,21 @@ with st.sidebar:
     )
     st.divider()
 
-    # Security check: load key from environment
-    env_key = os.getenv("GROQ_API_KEY", "").strip()
+    # Security check: load key from st.secrets or environment
+    env_key = ""
+    try:
+        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+            env_key = str(st.secrets["GROQ_API_KEY"]).strip()
+    except Exception:
+        env_key = ""
+
+    if not env_key:
+        env_key = os.getenv("GROQ_API_KEY", "").strip()
+
     user_key_input = None
 
     if not env_key or env_key.startswith("gsk_your"):
-        st.warning("`GROQ_API_KEY` not found in `.env`")
+        st.warning("`GROQ_API_KEY` not found in `.env` or Streamlit Secrets")
         user_key_input = st.sidebar.text_input(
             "Enter Groq API Key",
             type="password",
